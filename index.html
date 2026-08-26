@@ -1,0 +1,987 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CHECOTEC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Work+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  /* ---------- Tokens ---------- */
+  :root {
+    --red: #CA3435;
+    --red-deep: #A32829;
+    --ink: #111111;
+    --white: #FFFFFF;
+    --paper: #F4F4F4;
+    --grey: #6B6B6B;
+    --grey-warm: #8A7E7E;
+    --line: #E3DBDB;
+
+    --bg: var(--white);
+    --surface: var(--paper);
+    --surface-2: #ECE5E5;
+    --text: var(--ink);
+    --text-secondary: var(--grey);
+    --accent: var(--red);
+    --accent-deep: var(--red-deep);
+    --on-accent: var(--white);
+    --border: var(--line);
+    --plate-bg: var(--ink);
+    --plate-text: var(--paper);
+    --plate-line: #333030;
+
+    --font-display: 'Archivo Black', 'Arial Black', sans-serif;
+    --font-body: 'Work Sans', 'Segoe UI', sans-serif;
+    --font-mono: 'JetBrains Mono', 'SFMono-Regular', monospace;
+
+    --shadow-card: 0 1px 0 var(--border);
+    color-scheme: light;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #131111;
+      --surface: #1B1818;
+      --surface-2: #221D1D;
+      --text: var(--paper);
+      --text-secondary: #B9AFAF;
+      --border: #332B2B;
+      --plate-bg: #000000;
+      --plate-text: var(--paper);
+      --plate-line: #2A2424;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #131111;
+    --surface: #1B1818;
+    --surface-2: #221D1D;
+    --text: var(--paper);
+    --text-secondary: #B9AFAF;
+    --border: #332B2B;
+    --plate-bg: #000000;
+    --plate-text: var(--paper);
+    --plate-line: #2A2424;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img, svg { display: block; max-width: 100%; }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 1.02;
+    text-wrap: balance;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  p { margin: 0; }
+
+  a { color: inherit; text-decoration: none; }
+
+  .wrap {
+    max-width: 1180px;
+    margin-inline: auto;
+    padding-inline: clamp(20px, 4vw, 48px);
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 0.6em;
+    height: 0.6em;
+    background: var(--accent);
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+    flex: none;
+  }
+
+  /* ---------- Logo lockup ---------- */
+  .logo {
+    display: grid;
+    grid-template-columns: 0.62em 1fr;
+    align-items: center;
+    column-gap: 0.14em;
+    font-family: var(--font-display);
+    line-height: 0.82;
+    letter-spacing: -0.015em;
+    color: var(--accent);
+  }
+  .logo--black { color: var(--ink); }
+  .logo--white { color: var(--white); }
+  .logo--mono  { color: currentColor; }
+  .logo-tri {
+    width: 0.62em;
+    height: 1.64em;
+    background: currentColor;
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+  }
+  .logo-text { display: flex; flex-direction: column; }
+  .logo-text span { display: block; }
+  .logo-sub {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.26em;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-top: 0.55em;
+    line-height: 1.3;
+  }
+
+  /* ---------- Header ---------- */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding-block: 16px;
+  }
+  .logo-link { font-size: 21px; }
+  nav.primary-nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+  nav.primary-nav a {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    white-space: nowrap;
+  }
+  nav.primary-nav a:hover { color: var(--accent); }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.88rem;
+    padding: 0.85em 1.4em;
+    border: 2px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+  }
+  .btn-primary { background: var(--accent); color: var(--on-accent); }
+  .btn-primary:hover { background: var(--accent-deep); }
+  .btn-outline { background: transparent; color: var(--text); border-color: var(--border); }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-plate { background: var(--white); color: var(--ink); }
+  .btn-plate:hover { background: var(--paper); }
+  .btn:active { transform: translateY(1px); }
+
+  .menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    color: var(--text);
+  }
+  .menu-toggle svg { width: 24px; height: 24px; }
+
+  /* ---------- Section rhythm ---------- */
+  section { padding-block: clamp(56px, 9vw, 108px); }
+  .section-head {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: clamp(32px, 5vw, 56px);
+    max-width: 720px;
+  }
+  .section-head h2 { font-size: clamp(1.9rem, 3.4vw, 2.7rem); }
+  .lede { font-size: 1.08rem; color: var(--text-secondary); max-width: 62ch; }
+
+  .rule {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    padding-block: clamp(64px, 11vw, 128px) clamp(48px, 7vw, 88px);
+    position: relative;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(32px, 5vw, 64px);
+    align-items: end;
+  }
+  .hero h1 {
+    font-size: clamp(2.4rem, 5.6vw, 4.4rem);
+    margin-top: 18px;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+  .hero-copy { max-width: 60ch; }
+  .hero-lede {
+    margin-top: 22px;
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    max-width: 52ch;
+  }
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 34px;
+  }
+  .hero-badges {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 22px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+  }
+  .hero-badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.03em;
+    color: var(--text);
+  }
+  .hero-badge .dot {
+    width: 7px; height: 7px;
+    background: var(--accent);
+    flex: none;
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+  }
+
+  /* ---------- Value strip ---------- */
+  .value-strip {
+    padding-block: 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .value-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .value-item {
+    padding: 30px clamp(16px, 3vw, 32px);
+    border-left: 1px solid var(--border);
+  }
+  .value-item:first-child { border-left: none; }
+  .value-item .num {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+  }
+  .value-item p.claim {
+    font-family: var(--font-display);
+    font-size: 1.02rem;
+    line-height: 1.28;
+    margin-top: 10px;
+    max-width: 30ch;
+  }
+
+  /* ---------- Quiénes somos ---------- */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: clamp(32px, 5vw, 72px);
+    align-items: start;
+  }
+  .about-body p { color: var(--text-secondary); font-size: 1.02rem; }
+  .about-body p + p { margin-top: 18px; }
+  .founder-card {
+    margin-top: 28px;
+    padding: 22px;
+    background: var(--surface);
+    border-left: 3px solid var(--accent);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .founder-card .name { font-weight: 700; font-size: 1rem; }
+  .founder-card .role { font-size: 0.88rem; color: var(--text-secondary); }
+
+  .mv-stack { display: flex; flex-direction: column; gap: 18px; }
+  .mv-card {
+    padding: 26px;
+    border: 1px solid var(--border);
+    position: relative;
+  }
+  .mv-card h3 {
+    font-size: 1.05rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .mv-card p { margin-top: 12px; font-size: 0.95rem; color: var(--text-secondary); }
+  .draft-tag {
+    position: absolute;
+    top: -1px; right: -1px;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: var(--on-accent);
+    padding: 4px 8px;
+  }
+
+  /* ---------- Líneas de negocio ---------- */
+  .lines-wrap { background: var(--surface); }
+  .lines-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .line-card {
+    background: var(--bg);
+    padding: clamp(28px, 3.4vw, 44px);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .line-tag {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+  .line-card h3 {
+    font-size: clamp(1.4rem, 2.4vw, 1.85rem);
+    max-width: 16ch;
+  }
+  .line-card .anchor {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 1.04rem;
+    color: var(--accent);
+  }
+  .line-card .who { font-size: 0.92rem; color: var(--text-secondary); }
+  .pain-list {
+    list-style: none;
+    margin: 0; padding: 0;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .pain-list li {
+    display: flex;
+    gap: 10px;
+    font-size: 0.92rem;
+    color: var(--text);
+  }
+  .pain-list li::before {
+    content: "";
+    width: 6px; height: 6px;
+    margin-top: 7px;
+    background: var(--accent);
+    flex: none;
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+  }
+  .line-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+  }
+  .line-meta div { display: flex; flex-direction: column; gap: 4px; }
+  .line-meta .k {
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+  .line-meta .v { font-size: 0.9rem; font-weight: 600; }
+  .line-note {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    border-left: 2px solid var(--border);
+    padding-left: 10px;
+  }
+  .line-card .btn { align-self: flex-start; margin-top: 6px; }
+
+  /* ---------- Diseña tu curso (plate) ---------- */
+  .plate {
+    background: var(--plate-bg);
+    color: var(--plate-text);
+  }
+  .plate-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(32px, 5vw, 72px);
+    align-items: start;
+  }
+  .plate .eyebrow { color: var(--accent); }
+  .plate h2 { color: var(--white); font-size: clamp(1.9rem, 3.4vw, 2.6rem); margin-top: 14px; }
+  .plate .lede { color: #C9BFBF; margin-top: 18px; }
+  .plate-quote {
+    margin-top: 26px;
+    padding: 20px 22px;
+    border-left: 3px solid var(--accent);
+    background: rgba(255,255,255,0.04);
+    font-size: 0.95rem;
+    color: #DCD3D3;
+    line-height: 1.6;
+  }
+
+  .form-card {
+    background: var(--white);
+    color: var(--ink);
+    padding: clamp(24px, 3vw, 32px);
+    border: 1px solid var(--plate-line);
+  }
+  .form-card h3 { font-size: 1.15rem; }
+  .form-card .sub { margin-top: 6px; font-size: 0.86rem; color: var(--grey); }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 20px; }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .field.full { grid-column: 1 / -1; }
+  .field label {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--grey);
+  }
+  .field input, .field textarea {
+    font-family: var(--font-body);
+    font-size: 0.94rem;
+    padding: 11px 12px;
+    border: 1px solid #DCD4D4;
+    background: var(--paper);
+    color: var(--ink);
+    resize: vertical;
+  }
+  .field input:focus, .field textarea:focus {
+    outline: 2px solid var(--red);
+    outline-offset: 1px;
+    background: var(--white);
+  }
+  .form-card .btn { margin-top: 20px; width: 100%; justify-content: center; }
+  .form-status {
+    margin-top: 12px;
+    font-size: 0.82rem;
+    color: var(--grey);
+    min-height: 1.2em;
+  }
+
+  /* ---------- Certificaciones ---------- */
+  .cred-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .cred-card {
+    background: var(--bg);
+    padding: 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    min-height: 100%;
+  }
+  .cred-icon {
+    width: 34px; height: 34px;
+    border: 2px solid var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--accent);
+    flex: none;
+  }
+  .cred-card h3 { font-size: 1rem; }
+  .cred-card p { font-size: 0.88rem; color: var(--text-secondary); }
+  .cred-code {
+    margin-top: auto;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-secondary);
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+  }
+
+  /* ---------- Contacto ---------- */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(32px, 5vw, 72px);
+    align-items: center;
+  }
+  .contact-list { display: flex; flex-direction: column; gap: 2px; margin-top: 28px; }
+  .contact-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 0;
+    border-top: 1px solid var(--border);
+  }
+  .contact-row:last-child { border-bottom: 1px solid var(--border); }
+  .contact-row .k {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+  .contact-row .v { font-size: 1.1rem; font-weight: 700; }
+  .contact-row a.v:hover { color: var(--accent); }
+  .contact-cta-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: clamp(28px, 3vw, 40px);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .contact-cta-card h3 { font-size: 1.4rem; }
+  .contact-cta-card p { color: var(--text-secondary); font-size: 0.95rem; }
+  .contact-cta-actions { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+
+  /* ---------- Footer ---------- */
+  footer { background: var(--plate-bg); color: var(--plate-text); }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    gap: clamp(24px, 4vw, 56px);
+    padding-block: clamp(40px, 6vw, 64px);
+  }
+  footer .logo-sub { color: #9C9191; }
+  .footer-col h4 {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #9C9191;
+    font-weight: 400;
+    margin-bottom: 14px;
+  }
+  .footer-col p, .footer-col a {
+    display: block;
+    font-size: 0.9rem;
+    color: #D8CFCF;
+    margin-bottom: 8px;
+  }
+  .footer-col a:hover { color: var(--accent); }
+  .footer-bottom {
+    border-top: 1px solid var(--plate-line);
+    padding-block: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: #8A8080;
+  }
+
+  /* ---------- Reveal (progressive enhancement: hidden only once JS arms it) ---------- */
+  html.reveal-armed .reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  html.reveal-armed .reveal.in { opacity: 1; transform: translateY(0); }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 880px) {
+    nav.primary-nav { display: none; }
+    .menu-toggle { display: inline-flex; }
+    .hero-grid { grid-template-columns: 1fr; }
+    .value-grid { grid-template-columns: 1fr; }
+    .value-item { border-left: none; border-top: 1px solid var(--border); }
+    .value-item:first-child { border-top: none; }
+    .about-grid { grid-template-columns: 1fr; }
+    .lines-grid { grid-template-columns: 1fr; }
+    .plate-grid { grid-template-columns: 1fr; }
+    .field-row { grid-template-columns: 1fr; }
+    .cred-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; }
+  }
+
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    gap: 2px;
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    padding: 16px clamp(20px, 4vw, 48px);
+    font-weight: 600;
+    border-bottom: 1px solid var(--border);
+  }
+</style>
+
+<header>
+  <div class="wrap header-row">
+    <a href="#top" class="logo logo-link" aria-label="CHECOTEC — inicio">
+      <span class="logo-tri" aria-hidden="true"></span>
+      <span class="logo-text"><span>CHECO</span><span>OTEC</span></span>
+    </a>
+    <nav class="primary-nav" aria-label="Navegación principal">
+      <a href="#quienes-somos">Quiénes somos</a>
+      <a href="#lineas">Formación</a>
+      <a href="#diseña-tu-curso">Diseña tu curso</a>
+      <a href="#certificaciones">Certificaciones</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <a href="#contacto" class="btn btn-primary" style="display:none;" id="header-cta">Contactar</a>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+  <nav class="mobile-menu" id="mobile-menu" aria-label="Navegación móvil">
+    <a href="#quienes-somos">Quiénes somos</a>
+    <a href="#lineas">Formación</a>
+    <a href="#diseña-tu-curso">Diseña tu curso</a>
+    <a href="#certificaciones">Certificaciones</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow">OTEC certificado NCh2728:2015 · Registrado en SENCE</span>
+        <h1>No vendemos cursos.<br>Vendemos <em>productividad</em>.</h1>
+        <p class="hero-lede">CHECOTEC diseña e imparte capacitación técnica de alto impacto: empleabilidad en oficios sin oferta formativa, adopción real de inteligencia artificial en el trabajo diario, y programas a medida bajo franquicia tributaria SENCE.</p>
+        <div class="hero-actions">
+          <a href="#lineas" class="btn btn-primary">Ver líneas de formación</a>
+          <a href="#contacto" class="btn btn-outline">Hablar con nosotros</a>
+        </div>
+      </div>
+      <div class="hero-badges" aria-label="Credenciales">
+        <div class="hero-badge"><span class="dot"></span> Certificación NCh2728:2015 — Confidence Certification</div>
+        <div class="hero-badge"><span class="dot"></span> Organismo Técnico de Capacitación autorizado, Registro Nacional de OTEC — SENCE</div>
+        <div class="hero-badge"><span class="dot"></span> Capacitación bonificable vía franquicia tributaria SENCE</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= VALUE STRIP ================= -->
+  <section class="value-strip">
+    <div class="wrap value-grid">
+      <div class="value-item reveal">
+        <span class="num">01 — RESULTADOS</span>
+        <p class="claim">Diseñamos cada programa a partir del dolor real del cliente, no de un temario genérico.</p>
+      </div>
+      <div class="value-item reveal">
+        <span class="num">02 — CALIDAD</span>
+        <p class="claim">Sistema de gestión certificado NCh2728:2015, con trazabilidad y respaldo SENCE.</p>
+      </div>
+      <div class="value-item reveal">
+        <span class="num">03 — ALCANCE</span>
+        <p class="claim">Capacidad para formalizar cursos nuevos y a medida en prácticamente cualquier área.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= QUIÉNES SOMOS ================= -->
+  <section id="quienes-somos">
+    <div class="wrap about-grid">
+      <div class="reveal">
+        <span class="eyebrow">Quiénes somos</span>
+        <h2 style="margin-top:14px; font-size:clamp(1.8rem,3vw,2.4rem);">Un OTEC nacido de las artes escénicas, construido para escalar a cualquier oficio.</h2>
+        <div class="about-body" style="margin-top:24px;">
+          <p>CHECOTEC SpA es un Organismo Técnico de Capacitación chileno, certificado bajo la norma NCh2728:2015 y autorizado por SENCE, que diseña e imparte programas de capacitación bajo la modalidad de franquicia tributaria.</p>
+          <p>Nace en 2026 vinculado a Espacio Checoeslovaquia, centro cultural y de artes escénicas — de ahí su primera línea de especialización: formación técnica para oficios del espectáculo en vivo, un área con escasísima oferta formal en Chile. Desde ahí, CHECOTEC amplía su portafolio a la capacitación empresarial, partiendo por talleres de adopción real de inteligencia artificial en el trabajo cotidiano.</p>
+          <p>Está estructurado como una plataforma de capacitación general: puede diseñar, formalizar e impartir programas en cualquier área que una organización o un sector productivo necesite, siempre bajo el estándar NCh2728 y el marco normativo SENCE.</p>
+        </div>
+        <div class="founder-card">
+          <span class="name">Nicolás de la Cuesta Gormaz</span>
+          <span class="role">Representante legal — Consultor en Desarrollo Organizacional e IA Aplicada. +20 años en Gestión de Personas · Docente universitario (UDD) · Ingeniero Comercial (PUC) · MBA</span>
+        </div>
+      </div>
+
+      <div class="mv-stack reveal">
+        <div class="mv-card">
+          <span class="draft-tag">Borrador · a validar</span>
+          <h3>Misión</h3>
+          <p>Diseñar e impartir capacitación técnica de alto impacto — en oficios sin oferta formativa, en adopción tecnológica real, y en las necesidades que cada organización o sector productivo defina — con estándares de calidad certificados, para que cada persona y cada equipo capacitado mejore de forma medible su desempeño y su empleabilidad.</p>
+        </div>
+        <div class="mv-card">
+          <span class="draft-tag">Borrador · a validar</span>
+          <h3>Visión</h3>
+          <p>Ser el OTEC de referencia en Chile para capacitación técnica especializada donde hoy no existe oferta formal, y el socio de confianza de las empresas que buscan que la adopción de nuevas tecnologías y metodologías se traduzca en productividad real, no en cursos que se archivan.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= LÍNEAS DE NEGOCIO ================= -->
+  <section id="lineas" class="lines-wrap">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Líneas de formación</span>
+        <h2>Dos frentes. Un mismo estándar.</h2>
+        <p class="lede">Cada línea responde a un dolor distinto y se vende de forma distinta — nunca compartimos el mismo discurso entre ambas.</p>
+      </div>
+    </div>
+    <div class="wrap" style="padding:0;">
+      <div class="lines-grid reveal">
+
+        <!-- IA -->
+        <article class="line-card">
+          <span class="line-tag">Línea 01 — B2B</span>
+          <h3>Talleres de Inteligencia Artificial aplicada</h3>
+          <p class="anchor">"IA que tu equipo realmente va a usar."</p>
+          <p class="who">Para empresas de 20 a 500 trabajadores, cualquier rubro. Interlocutor: dueño o gerente de RRHH, Operaciones o Comercial.</p>
+          <ul class="pain-list">
+            <li>Tareas repetitivas que quitan tiempo a lo estratégico.</li>
+            <li>Presión por "avanzar en IA" sin criterio ni método claro.</li>
+            <li>Intentos previos de adopción de IA que murieron a la tercera semana.</li>
+          </ul>
+          <div class="line-meta">
+            <div><span class="k">Formato</span><span class="v">Taller a medida — 4-5h o 8h+ SENCE</span></div>
+            <div><span class="k">Resultado</span><span class="v">Se paga solo en menos de un mes</span></div>
+          </div>
+          <a href="#contacto" class="btn btn-primary">Cotizar taller de IA</a>
+        </article>
+
+        <!-- Artes escénicas -->
+        <article class="line-card">
+          <span class="line-tag">Línea 02 — Institucional</span>
+          <h3>Formación técnica en artes escénicas y oficios del espectáculo</h3>
+          <p class="anchor">Referente casi único en Chile.</p>
+          <p class="who">Para productoras, teatros, centros culturales, municipios y trabajadores de montaje y producción de espectáculos en vivo.</p>
+          <ul class="pain-list">
+            <li>En Chile casi no existe oferta formal para tramoyas, montajistas, iluminadores, sonido y rigging.</li>
+            <li>Un curso con 20 cupos disponibles recibió 180 inscripciones.</li>
+            <li>Portafolio guiado por ChileValora: oficios con certificación de competencias pero sin capacitación formal asociada.</li>
+          </ul>
+          <div class="line-meta">
+            <div><span class="k">Curso insignia</span><span class="v">Montaje de grandes escenarios</span></div>
+            <div><span class="k">Vía de acceso</span><span class="v">Convenios directos, no venta masiva</span></div>
+          </div>
+          <p class="line-note">Curso insignia actualmente en proceso de formalización ante SENCE.</p>
+          <a href="#contacto" class="btn btn-outline">Conversar un convenio</a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= DISEÑA TU CURSO ================= -->
+  <section id="diseña-tu-curso" class="plate">
+    <div class="wrap plate-grid">
+      <div class="reveal">
+        <span class="eyebrow">Línea 03 — A medida</span>
+        <h2>¿Tienes una necesidad de capacitación distinta?</h2>
+        <p class="lede">CHECOTEC es un Organismo Técnico de Capacitación con sistema de gestión de calidad certificado (NCh2728:2015) y habilitado por SENCE para solicitar la aprobación de nuevos cursos en prácticamente cualquier área de capacitación laboral.</p>
+        <div class="plate-quote">Si tu empresa, institución o sector productivo tiene una necesidad de formación que hoy no encuentra oferta adecuada, podemos diseñarla, formalizarla ante SENCE y ejecutarla bajo franquicia tributaria.</div>
+      </div>
+
+      <form class="form-card reveal" id="course-form">
+        <h3>Cuéntanos qué necesitas</h3>
+        <p class="sub">Te responderemos por correo a la brevedad.</p>
+        <div class="field-row">
+          <div class="field">
+            <label for="f-name">Nombre</label>
+            <input id="f-name" name="nombre" type="text" required>
+          </div>
+          <div class="field">
+            <label for="f-org">Empresa / institución</label>
+            <input id="f-org" name="empresa" type="text" required>
+          </div>
+          <div class="field">
+            <label for="f-email">Correo</label>
+            <input id="f-email" name="correo" type="email" required>
+          </div>
+          <div class="field">
+            <label for="f-phone">Teléfono</label>
+            <input id="f-phone" name="telefono" type="tel">
+          </div>
+          <div class="field full">
+            <label for="f-need">¿Qué necesitas capacitar?</label>
+            <textarea id="f-need" name="necesidad" rows="4" required></textarea>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar solicitud</button>
+        <p class="form-status" id="form-status"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ================= CERTIFICACIONES ================= -->
+  <section id="certificaciones">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Respaldo institucional</span>
+        <h2>Calidad verificable, no autodeclarada.</h2>
+      </div>
+    </div>
+    <div class="wrap" style="padding:0;">
+      <div class="cred-grid reveal">
+        <div class="cred-card">
+          <div class="cred-icon">NC</div>
+          <h3>NCh2728:2015</h3>
+          <p>Certificación de calidad vigente, otorgada por Confidence Certification.</p>
+          <span class="cred-code">CERT · NCH2728:2015</span>
+        </div>
+        <div class="cred-card">
+          <div class="cred-icon">OT</div>
+          <h3>Registro Nacional de OTEC</h3>
+          <p>Organismo Técnico de Capacitación autorizado e inscrito ante SENCE.</p>
+          <span class="cred-code">RUT · 78.395.323-4</span>
+        </div>
+        <div class="cred-card">
+          <div class="cred-icon">FT</div>
+          <h3>Franquicia tributaria SENCE</h3>
+          <p>La capacitación puede ser bonificada por la empresa que forma a sus trabajadores.</p>
+          <span class="cred-code">BENEFICIO · EMPRESAS</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACTO ================= -->
+  <section id="contacto">
+    <div class="wrap contact-grid">
+      <div class="reveal">
+        <span class="eyebrow">Contacto</span>
+        <h2 style="margin-top:14px;">Conversemos sobre tu programa.</h2>
+        <div class="contact-list">
+          <div class="contact-row">
+            <span class="k">Correo</span>
+            <a class="v" href="mailto:otec@espaciochecoeslovaquia.cl">otec@espaciochecoeslovaquia.cl</a>
+          </div>
+          <div class="contact-row">
+            <span class="k">Teléfono / WhatsApp</span>
+            <a class="v" href="https://wa.me/56939020479" target="_blank" rel="noopener">+56 9 3902 0479</a>
+          </div>
+        </div>
+      </div>
+      <div class="contact-cta-card reveal">
+        <h3>¿Prefieres escribirnos directo?</h3>
+        <p>Cuéntanos si buscas un taller de IA, un convenio de formación técnica en artes escénicas, o un curso a medida para tu equipo.</p>
+        <div class="contact-cta-actions">
+          <a class="btn btn-primary" href="mailto:otec@espaciochecoeslovaquia.cl">Escribir un correo</a>
+          <a class="btn btn-outline" href="https://wa.me/56939020479" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-top">
+    <div>
+      <a href="#top" class="logo logo--white" aria-label="CHECOTEC" style="font-size:22px;">
+        <span class="logo-tri" aria-hidden="true"></span>
+        <span class="logo-text"><span>CHECO</span><span>OTEC</span></span>
+      </a>
+      <span class="logo-sub" style="display:block; margin-top:14px; max-width:32ch;">Organismo Técnico de Capacitación</span>
+    </div>
+    <div class="footer-col">
+      <h4>Institucional</h4>
+      <p>CHECOTEC SpA</p>
+      <p>RUT 78.395.323-4</p>
+      <p>Certificación NCh2728:2015</p>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <a href="mailto:otec@espaciochecoeslovaquia.cl">otec@espaciochecoeslovaquia.cl</a>
+      <a href="https://wa.me/56939020479" target="_blank" rel="noopener">+56 9 3902 0479</a>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <span>© 2026 CHECOTEC SpA</span>
+    <span>Organismo Técnico de Capacitación · SENCE</span>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var toggle = document.getElementById('menu-toggle');
+    var menu = document.getElementById('mobile-menu');
+    toggle.addEventListener('click', function () {
+      var open = menu.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    menu.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        menu.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if ('IntersectionObserver' in window && !reduceMotion) {
+      document.documentElement.classList.add('reveal-armed');
+      var revealEls = document.querySelectorAll('.reveal');
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      revealEls.forEach(function (el) { io.observe(el); });
+    }
+
+    var form = document.getElementById('course-form');
+    var status = document.getElementById('form-status');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var data = new FormData(form);
+      var nombre = data.get('nombre');
+      var empresa = data.get('empresa');
+      var correo = data.get('correo');
+      var telefono = data.get('telefono') || 'No indicado';
+      var necesidad = data.get('necesidad');
+      var subject = 'Solicitud de capacitación a medida — ' + empresa;
+      var body = 'Nombre: ' + nombre + '\n' +
+                 'Empresa/institución: ' + empresa + '\n' +
+                 'Correo: ' + correo + '\n' +
+                 'Teléfono: ' + telefono + '\n\n' +
+                 'Necesidad de capacitación:\n' + necesidad;
+      var mailto = 'mailto:otec@espaciochecoeslovaquia.cl?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      window.location.href = mailto;
+      status.textContent = 'Abriendo tu cliente de correo con la solicitud pre-cargada…';
+    });
+  })();
+</script>
