@@ -397,27 +397,70 @@
 
   .credenciales {
     margin: 32px auto 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
+    max-width: 600px;
+    text-align: left;
   }
 
   .credencial {
+    border-top: 1px solid var(--borde);
+  }
+
+  .credencial:last-child {
+    border-bottom: 1px solid var(--borde);
+  }
+
+  .credencial-header {
+    width: 100%;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 6px;
-    max-width: 480px;
-    font-size: 14px;
-    color: #AAAAAA;
-    text-align: center;
+    justify-content: space-between;
+    gap: 16px;
+    background: none;
+    border: none;
+    padding: 18px 4px;
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
   }
 
   .cred-tag {
     color: var(--rojo);
     font-weight: 700;
-    font-size: 13px;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+  }
+
+  .credencial-icono {
+    color: var(--gris-claro);
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1;
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+  }
+
+  .credencial.abierto .credencial-icono {
+    transform: rotate(45deg);
+  }
+
+  .credencial-contenido {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .credencial.abierto .credencial-contenido {
+    max-height: 200px;
+  }
+
+  .credencial-contenido p {
+    margin: 0;
+    padding: 0 4px 18px;
+    max-width: 560px;
+    font-size: 14px;
+    color: #AAAAAA;
+    line-height: 1.65;
+    text-align: left;
   }
 
   /* FORMULARIO */
@@ -887,17 +930,32 @@
   <p>En Chile, miles de personas trabajan todos los días en el backstage del espectáculo en vivo: iluminan, sonorizan, arman escenarios, suspenden estructuras. Lo hacen bien, con oficio y experiencia acumulada. Pero sin formación formal, sin certificación, sin acceso a capacitación que reconozca lo que ya saben.</p>
   <p>CHECOTEC nace vinculado a Espacio Checoeslovaquia — un centro cultural con infraestructura técnica real — para cambiar eso. No desde cero: ya hemos dictado capacitación en el rubro. Ahora la formalizamos.</p>
   <div class="credenciales">
-    <div class="credencial">
-      <span class="cred-tag">NCh2728</span>
-      <span>Certificación de calidad vigente emitida por Confidence Certification — el estándar que exige SENCE para organismos de capacitación.</span>
+    <div class="credencial abierto">
+      <button class="credencial-header" onclick="toggleCredencial(this)" aria-expanded="true">
+        <span class="cred-tag">NCh2728</span>
+        <span class="credencial-icono" aria-hidden="true">+</span>
+      </button>
+      <div class="credencial-contenido">
+        <p>Certificación de calidad vigente emitida por Confidence Certification — el estándar que exige SENCE para organismos de capacitación.</p>
+      </div>
     </div>
     <div class="credencial">
-      <span class="cred-tag">OTEC</span>
-      <span>Organismo Técnico de Capacitación inscrito en el Registro Nacional SENCE (RUT 78.395.323-4). Los cursos aprobados permiten usar franquicia tributaria para empresas e instituciones.</span>
+      <button class="credencial-header" onclick="toggleCredencial(this)" aria-expanded="false">
+        <span class="cred-tag">OTEC</span>
+        <span class="credencial-icono" aria-hidden="true">+</span>
+      </button>
+      <div class="credencial-contenido">
+        <p>Organismo Técnico de Capacitación inscrito en el Registro Nacional SENCE (RUT 78.395.323-4). Los cursos aprobados permiten usar franquicia tributaria para empresas e instituciones.</p>
+      </div>
     </div>
     <div class="credencial">
-      <span class="cred-tag">Espacio</span>
-      <span>Infraestructura técnica real en San Joaquín, Santiago — no una sala de reuniones, sino un espacio escénico de trabajo.</span>
+      <button class="credencial-header" onclick="toggleCredencial(this)" aria-expanded="false">
+        <span class="cred-tag">Espacio</span>
+        <span class="credencial-icono" aria-hidden="true">+</span>
+      </button>
+      <div class="credencial-contenido">
+        <p>Infraestructura técnica real en San Joaquín, Santiago — no una sala de reuniones, sino un espacio escénico de trabajo.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -1153,6 +1211,12 @@
     requestAnimationFrame(frame);
   }
 })();
+
+function toggleCredencial(btn) {
+  const item = btn.closest(".credencial");
+  const abierto = item.classList.toggle("abierto");
+  btn.setAttribute("aria-expanded", abierto ? "true" : "false");
+}
 
 function seleccionarCurso(e, id) {
   e.preventDefault();
