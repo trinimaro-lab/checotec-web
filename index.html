@@ -193,7 +193,7 @@
 
   .curso-banda {
     position: relative;
-    height: 108px;
+    height: 150px;
     display: flex;
     align-items: flex-end;
     padding: 16px 20px;
@@ -205,29 +205,44 @@
     background: linear-gradient(135deg, #333333 0%, var(--carbon) 100%);
   }
 
-  .curso-banda::before {
+  .curso-foto {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .curso-card:not(.principal) .curso-foto {
+    filter: grayscale(1);
+  }
+
+  .curso-banda::after {
     content: "";
     position: absolute;
-    right: -16px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 110px;
-    height: 110px;
-    background: rgba(255,255,255,0.07);
-    clip-path: polygon(0 0, 100% 50%, 0 100%);
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.25) 45%, rgba(0,0,0,0.82) 100%);
+  }
+
+  .curso-card:not(.principal) .curso-banda::after {
+    background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 45%, rgba(0,0,0,0.88) 100%);
   }
 
   .curso-badge {
     position: relative;
+    z-index: 2;
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.1em;
-    color: rgba(255,255,255,0.9);
+    color: rgba(255,255,255,0.95);
     text-transform: uppercase;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
   }
 
   .curso-card:not(.principal) .curso-badge {
-    color: var(--gris-claro);
+    color: rgba(255,255,255,0.85);
   }
 
   .curso-body {
@@ -699,7 +714,7 @@
 
   <!-- Luminotecnia -->
   <div class="curso-card principal">
-    <div class="curso-banda"><span class="curso-badge">Primer ciclo · abriendo pronto</span></div>
+    <div class="curso-banda"><img class="curso-foto" src="img/luminotecnia.jpg" alt="Luminotecnia escénica en montaje"><span class="curso-badge">Primer ciclo · abriendo pronto</span></div>
     <div class="curso-body">
       <div class="curso-nombre">Luminotecnia Escénica</div>
       <p class="curso-desc">Diseño y operación de iluminación para teatro, música en vivo y eventos. Desde fundamentos técnicos hasta operación de consolas y montaje en sala. Formación práctica con certificación formal — el oficio que más demanda generó en nuestra convocatoria.</p>
@@ -713,7 +728,7 @@
 
   <!-- Escenotecnia -->
   <div class="curso-card principal">
-    <div class="curso-banda"><span class="curso-badge">Primer ciclo · abriendo pronto</span></div>
+    <div class="curso-banda"><img class="curso-foto" src="img/escenotecnia.jpg" alt="Montaje de escenotecnia en sala de ensayo"><span class="curso-badge">Primer ciclo · abriendo pronto</span></div>
     <div class="curso-body">
       <div class="curso-nombre">Escenotecnia</div>
       <p class="curso-desc">Tramoyería, construcción y operación de escenografía, montaje y desmontaje de producciones. Para técnicos escénicos que quieren formalizar y profundizar su oficio.</p>
@@ -727,7 +742,7 @@
 
   <!-- Sonido -->
   <div class="curso-card">
-    <div class="curso-banda"><span class="curso-badge pronto">Próximamente</span></div>
+    <div class="curso-banda"><img class="curso-foto" src="img/sonido.jpg" alt="Consola de sonido en vivo"><span class="curso-badge pronto">Próximamente</span></div>
     <div class="curso-body">
       <div class="curso-nombre">Sonido para Artes Escénicas</div>
       <p class="curso-desc">Montaje, operación y diseño de sistemas de sonido para teatro, música en vivo y eventos.</p>
@@ -741,7 +756,7 @@
 
   <!-- Izaje -->
   <div class="curso-card">
-    <div class="curso-banda"><span class="curso-badge pronto">Próximamente</span></div>
+    <div class="curso-banda"><img class="curso-foto" src="img/izaje.jpg" alt="Estructuras de izaje y rigging suspendidas"><span class="curso-badge pronto">Próximamente</span></div>
     <div class="curso-body">
       <div class="curso-nombre">Izaje y Rigging Escénico</div>
       <p class="curso-desc">Técnicas de suspensión, rigging de estructuras escénicas y seguridad en trabajos en altura.</p>
@@ -755,7 +770,7 @@
 
   <!-- Seguridad -->
   <div class="curso-card">
-    <div class="curso-banda"><span class="curso-badge pronto">Próximamente</span></div>
+    <div class="curso-banda"><img class="curso-foto" src="img/seguridad.jpg" alt="Equipo técnico trabajando en montaje de escenario"><span class="curso-badge pronto">Próximamente</span></div>
     <div class="curso-body">
       <div class="curso-nombre">Seguridad en Escenarios</div>
       <p class="curso-desc">Protocolo, riesgos y procedimientos de seguridad para el montaje y operación de grandes escenarios.</p>
