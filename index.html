@@ -170,34 +170,75 @@
     line-height: 1.65;
   }
 
-  .curso-card {
-    border: 1px solid var(--borde);
-    padding: 32px;
-    margin-bottom: 16px;
-    max-width: 740px;
-    transition: border-color 0.15s;
+  .cursos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 1020px;
   }
 
-  .curso-card:hover { border-color: #555; }
+  .curso-card {
+    background: var(--carbon);
+    border: 1px solid var(--borde);
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .curso-card:hover { border-color: #555; transform: translateY(-2px); }
 
   .curso-card.principal { border-color: var(--rojo); }
 
+  .curso-banda {
+    position: relative;
+    height: 108px;
+    display: flex;
+    align-items: flex-end;
+    padding: 16px 20px;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--rojo) 0%, var(--rojo-oscuro) 100%);
+  }
+
+  .curso-card:not(.principal) .curso-banda {
+    background: linear-gradient(135deg, #333333 0%, var(--carbon) 100%);
+  }
+
+  .curso-banda::before {
+    content: "";
+    position: absolute;
+    right: -16px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 110px;
+    height: 110px;
+    background: rgba(255,255,255,0.07);
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+  }
+
   .curso-badge {
+    position: relative;
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.1em;
-    color: var(--rojo);
+    color: rgba(255,255,255,0.9);
     text-transform: uppercase;
-    margin-bottom: 12px;
-    display: block;
   }
 
-  .curso-badge.pronto {
+  .curso-card:not(.principal) .curso-badge {
     color: var(--gris-claro);
   }
 
+  .curso-body {
+    padding: 24px 24px 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
   .curso-nombre {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 700;
     color: var(--blanco-puro);
     margin-bottom: 10px;
@@ -206,8 +247,70 @@
   .curso-desc {
     font-size: 14px;
     color: #AAAAAA;
-    line-height: 1.65;
-    max-width: 560px;
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .curso-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .curso-stat {
+    background: var(--negro);
+    border: 1px solid var(--borde);
+    border-radius: 10px;
+    padding: 10px 8px;
+    text-align: center;
+  }
+
+  .curso-stat-label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--gris-claro);
+    margin-bottom: 4px;
+  }
+
+  .curso-stat-value {
+    display: block;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--blanco-puro);
+  }
+
+  .curso-btn {
+    display: block;
+    width: 100%;
+    margin-top: 18px;
+    background: var(--rojo);
+    color: var(--blanco-puro);
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    padding: 13px 16px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+
+  .curso-btn:hover { background: var(--rojo-oscuro); }
+
+  .curso-card:not(.principal) .curso-btn {
+    background: transparent;
+    border: 1px solid var(--rojo);
+    color: var(--rojo);
+  }
+
+  .curso-card:not(.principal) .curso-btn:hover {
+    background: var(--rojo);
+    color: var(--blanco-puro);
   }
 
   /* POR QUÉ */
@@ -592,39 +695,78 @@
   <h2>Los cursos que estamos desarrollando</h2>
   <p class="intro">Comenzaremos con 2 cursos e iremos ampliando las alternativas. Los valores son de referencia y se confirmarán al abrir las inscripciones formales, según el número de inscritos.</p>
 
+  <div class="cursos-grid">
+
   <!-- Luminotecnia -->
   <div class="curso-card principal">
-    <span class="curso-badge">Primer ciclo · abriendo pronto</span>
-    <div class="curso-nombre">Luminotecnia Escénica</div>
-    <p class="curso-desc">Diseño y operación de iluminación para teatro, música en vivo y eventos. Desde fundamentos técnicos hasta operación de consolas y montaje en sala. Formación práctica con certificación formal — el oficio que más demanda generó en nuestra convocatoria.</p>
+    <div class="curso-banda"><span class="curso-badge">Primer ciclo · abriendo pronto</span></div>
+    <div class="curso-body">
+      <div class="curso-nombre">Luminotecnia Escénica</div>
+      <p class="curso-desc">Diseño y operación de iluminación para teatro, música en vivo y eventos. Desde fundamentos técnicos hasta operación de consolas y montaje en sala. Formación práctica con certificación formal — el oficio que más demanda generó en nuestra convocatoria.</p>
+      <div class="curso-stats">
+        <div class="curso-stat"><span class="curso-stat-label">Duración</span><span class="curso-stat-value">8–40h</span></div>
+        <div class="curso-stat"><span class="curso-stat-label">Modalidad</span><span class="curso-stat-value">Presencial</span></div>
+      </div>
+      <a href="#inscripcion" class="curso-btn" onclick="seleccionarCurso(event, 'curso-luminotecnia')">Inscribirme</a>
+    </div>
   </div>
 
   <!-- Escenotecnia -->
   <div class="curso-card principal">
-    <span class="curso-badge">Primer ciclo · abriendo pronto</span>
-    <div class="curso-nombre">Escenotecnia</div>
-    <p class="curso-desc">Tramoyería, construcción y operación de escenografía, montaje y desmontaje de producciones. Para técnicos escénicos que quieren formalizar y profundizar su oficio.</p>
+    <div class="curso-banda"><span class="curso-badge">Primer ciclo · abriendo pronto</span></div>
+    <div class="curso-body">
+      <div class="curso-nombre">Escenotecnia</div>
+      <p class="curso-desc">Tramoyería, construcción y operación de escenografía, montaje y desmontaje de producciones. Para técnicos escénicos que quieren formalizar y profundizar su oficio.</p>
+      <div class="curso-stats">
+        <div class="curso-stat"><span class="curso-stat-label">Duración</span><span class="curso-stat-value">8–40h</span></div>
+        <div class="curso-stat"><span class="curso-stat-label">Modalidad</span><span class="curso-stat-value">Presencial</span></div>
+      </div>
+      <a href="#inscripcion" class="curso-btn" onclick="seleccionarCurso(event, 'curso-escenotecnia')">Inscribirme</a>
+    </div>
   </div>
 
   <!-- Sonido -->
   <div class="curso-card">
-    <span class="curso-badge pronto">Próximamente</span>
-    <div class="curso-nombre">Sonido para Artes Escénicas</div>
-    <p class="curso-desc">Montaje, operación y diseño de sistemas de sonido para teatro, música en vivo y eventos.</p>
+    <div class="curso-banda"><span class="curso-badge pronto">Próximamente</span></div>
+    <div class="curso-body">
+      <div class="curso-nombre">Sonido para Artes Escénicas</div>
+      <p class="curso-desc">Montaje, operación y diseño de sistemas de sonido para teatro, música en vivo y eventos.</p>
+      <div class="curso-stats">
+        <div class="curso-stat"><span class="curso-stat-label">Duración</span><span class="curso-stat-value">8–40h</span></div>
+        <div class="curso-stat"><span class="curso-stat-label">Modalidad</span><span class="curso-stat-value">Presencial</span></div>
+      </div>
+      <a href="#inscripcion" class="curso-btn" onclick="seleccionarCurso(event, 'curso-sonido')">Inscribirme</a>
+    </div>
   </div>
 
   <!-- Izaje -->
   <div class="curso-card">
-    <span class="curso-badge pronto">Próximamente</span>
-    <div class="curso-nombre">Izaje y Rigging Escénico</div>
-    <p class="curso-desc">Técnicas de suspensión, rigging de estructuras escénicas y seguridad en trabajos en altura.</p>
+    <div class="curso-banda"><span class="curso-badge pronto">Próximamente</span></div>
+    <div class="curso-body">
+      <div class="curso-nombre">Izaje y Rigging Escénico</div>
+      <p class="curso-desc">Técnicas de suspensión, rigging de estructuras escénicas y seguridad en trabajos en altura.</p>
+      <div class="curso-stats">
+        <div class="curso-stat"><span class="curso-stat-label">Duración</span><span class="curso-stat-value">8–40h</span></div>
+        <div class="curso-stat"><span class="curso-stat-label">Modalidad</span><span class="curso-stat-value">Presencial</span></div>
+      </div>
+      <a href="#inscripcion" class="curso-btn" onclick="seleccionarCurso(event, 'curso-izaje')">Inscribirme</a>
+    </div>
   </div>
 
   <!-- Seguridad -->
   <div class="curso-card">
-    <span class="curso-badge pronto">Próximamente</span>
-    <div class="curso-nombre">Seguridad en Escenarios</div>
-    <p class="curso-desc">Protocolo, riesgos y procedimientos de seguridad para el montaje y operación de grandes escenarios.</p>
+    <div class="curso-banda"><span class="curso-badge pronto">Próximamente</span></div>
+    <div class="curso-body">
+      <div class="curso-nombre">Seguridad en Escenarios</div>
+      <p class="curso-desc">Protocolo, riesgos y procedimientos de seguridad para el montaje y operación de grandes escenarios.</p>
+      <div class="curso-stats">
+        <div class="curso-stat"><span class="curso-stat-label">Duración</span><span class="curso-stat-value">8–40h</span></div>
+        <div class="curso-stat"><span class="curso-stat-label">Modalidad</span><span class="curso-stat-value">Presencial</span></div>
+      </div>
+      <a href="#inscripcion" class="curso-btn" onclick="seleccionarCurso(event, 'curso-seguridad')">Inscribirme</a>
+    </div>
+  </div>
+
   </div>
 </section>
 
@@ -687,10 +829,19 @@
         <label class="field-label">¿Qué curso te interesa?</label>
         <div class="check-grid">
           <label class="check-item">
-            <input type="checkbox" name="curso" value="Luminotecnia Escénica"> Luminotecnia Escénica
+            <input type="checkbox" id="curso-luminotecnia" name="curso" value="Luminotecnia Escénica"> Luminotecnia Escénica
           </label>
           <label class="check-item">
-            <input type="checkbox" name="curso" value="Escenotecnia"> Escenotecnia
+            <input type="checkbox" id="curso-escenotecnia" name="curso" value="Escenotecnia"> Escenotecnia
+          </label>
+          <label class="check-item">
+            <input type="checkbox" id="curso-sonido" name="curso" value="Sonido para Artes Escénicas"> Sonido para Artes Escénicas
+          </label>
+          <label class="check-item">
+            <input type="checkbox" id="curso-izaje" name="curso" value="Izaje y Rigging Escénico"> Izaje y Rigging Escénico
+          </label>
+          <label class="check-item">
+            <input type="checkbox" id="curso-seguridad" name="curso" value="Seguridad en Escenarios"> Seguridad en Escenarios
           </label>
         </div>
       </div>
@@ -806,6 +957,16 @@
 </footer>
 
 <script>
+function seleccionarCurso(e, id) {
+  e.preventDefault();
+  const checkbox = document.getElementById(id);
+  if (checkbox) {
+    checkbox.checked = true;
+    checkbox.dispatchEvent(new Event("change"));
+  }
+  document.getElementById("inscripcion").scrollIntoView({ behavior: "smooth" });
+}
+
 document.querySelectorAll(".formato-item input[type=radio]").forEach(radio => {
   radio.addEventListener("change", function() {
     document.querySelectorAll(".formato-item").forEach(item => item.classList.remove("seleccionado"));
