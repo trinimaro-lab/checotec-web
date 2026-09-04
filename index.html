@@ -665,22 +665,58 @@
 
   /* FOOTER */
   footer {
-    padding: 32px 40px;
+    padding: 40px 40px 32px;
     border-top: 1px solid var(--borde);
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 16px;
   }
 
-  .footer-info, .footer-contacto {
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+
+  .footer-col { text-align: left; }
+
+  .footer-logo {
+    height: 38px;
+    width: auto;
+    display: block;
+    margin-bottom: 16px;
+  }
+
+  .footer-info {
     font-size: 13px;
     color: var(--gris-claro);
     line-height: 1.7;
   }
 
-  .footer-contacto { text-align: right; }
+  .footer-address {
+    font-size: 13px;
+    color: var(--gris-claro);
+    line-height: 1.7;
+    margin-bottom: 14px;
+  }
+
+  .footer-map {
+    display: block;
+    width: 100%;
+    max-width: 360px;
+    height: 160px;
+    border: 1px solid var(--borde);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .footer-map iframe { width: 100%; height: 100%; border: 0; display: block; }
+
+  .footer-map-link {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--rojo);
+  }
 
   /* RESPONSIVE */
   @media (max-width: 640px) {
@@ -693,8 +729,8 @@
     .check-grid { grid-template-columns: 1fr; }
     .check-grid.cols-3 { grid-template-columns: 1fr 1fr; }
     .formato-precio { display: block; margin-left: 0; margin-top: 8px; padding-left: 0; }
-    footer { flex-direction: column; padding: 24px 20px; }
-    .footer-contacto { text-align: left; }
+    footer { padding: 24px 20px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 28px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -998,15 +1034,24 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-info">
-    <strong>CHECOTEC SpA</strong><br>
-    RUT 78.395.323-4 · OTEC autorizado SENCE<br>
-    Certificación NCh2728:2015 · Confidence Certification
-  </div>
-  <div class="footer-contacto">
-    otec@espaciochecoeslovaquia.cl<br>
-    +56 9 3902 0479<br>
-    Espacio Checoeslovaquia · San Joaquín, Santiago
+  <div class="footer-grid">
+    <div class="footer-col">
+      <img src="img/logo-checotec-footer.png" alt="CHECOTEC" class="footer-logo">
+      <div class="footer-info">
+        <strong>CHECOTEC SpA</strong><br>
+        RUT 78.395.323-4 · OTEC autorizado SENCE<br>
+        Certificación NCh2728:2015 · Confidence Certification<br>
+        otec@espaciochecoeslovaquia.cl<br>
+        +56 9 3902 0479
+      </div>
+    </div>
+    <div class="footer-col">
+      <p class="footer-address">Liszt 3319, 8940831<br>San Joaquín, Región Metropolitana</p>
+      <div class="footer-map">
+        <iframe src="https://www.google.com/maps?q=Liszt+3319,+8940831+San+Joaqu%C3%ADn,+Regi%C3%B3n+Metropolitana&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicación CHECOTEC en el mapa"></iframe>
+      </div>
+      <a class="footer-map-link" href="https://maps.app.goo.gl/bqNaHATE6s45UgrZ7" target="_blank" rel="noopener">Ver en Google Maps →</a>
+    </div>
   </div>
 </footer>
 
