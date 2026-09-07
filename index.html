@@ -962,155 +962,21 @@
 
 <!-- FORMULARIO -->
 <section class="formulario-section" id="inscripcion">
- <div class="formulario-box">
   <h2>Regístrate. Te avisamos primero.</h2>
   <p class="form-subtitulo">Cupos limitados por edición. Quienes se registren aquí reciben fecha e información de inscripción antes de la apertura pública.</p>
-  <p class="form-aviso">Los cursos se dictarán una vez que contemos con un número suficiente de personas inscritas. Tu registro nos ayuda a confirmar la demanda y abrir el proceso.</p>
-
-  <form id="formCheco" onsubmit="enviarForm(event)">
-    <div class="form-grid">
-
-      <!-- P1 Nombre -->
-      <div class="form-group">
-        <label class="field-label" for="nombre">Nombre completo</label>
-        <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
-      </div>
-
-      <!-- P2 Correo -->
-      <div class="form-group">
-        <label class="field-label" for="email">Correo electrónico</label>
-        <input type="email" id="email" name="email" required placeholder="tu@correo.cl">
-      </div>
-
-      <!-- P3 WhatsApp -->
-      <div class="form-group">
-        <label class="field-label" for="whatsapp">WhatsApp (con código país)</label>
-        <input type="tel" id="whatsapp" name="whatsapp" required placeholder="+56 9 XXXX XXXX">
-      </div>
-
-      <!-- P8 Institución -->
-      <div class="form-group">
-        <label class="field-label" for="institucion">Institución o trabajo independiente</label>
-        <input type="text" id="institucion" name="institucion" placeholder="Teatro, productora, independiente...">
-      </div>
-
-      <!-- P4 Curso -->
-      <div class="form-group form-full">
-        <label class="field-label">¿Qué curso te interesa?</label>
-        <div class="check-grid">
-          <label class="check-item">
-            <input type="checkbox" id="curso-luminotecnia" name="curso" value="Luminotecnia Escénica"> Luminotecnia Escénica
-          </label>
-          <label class="check-item">
-            <input type="checkbox" id="curso-escenotecnia" name="curso" value="Escenotecnia"> Escenotecnia
-          </label>
-          <label class="check-item">
-            <input type="checkbox" id="curso-sonido" name="curso" value="Sonido para Artes Escénicas"> Sonido para Artes Escénicas
-          </label>
-          <label class="check-item">
-            <input type="checkbox" id="curso-izaje" name="curso" value="Izaje y Rigging Escénico"> Izaje y Rigging Escénico
-          </label>
-          <label class="check-item">
-            <input type="checkbox" id="curso-seguridad" name="curso" value="Seguridad en Escenarios"> Seguridad en Escenarios
-          </label>
-        </div>
-      </div>
-
-      <!-- P7 Formato / precio -->
-      <div class="form-group form-full">
-        <label class="field-label">¿Qué formato de curso te acomoda?</label>
-        <p style="font-size:13px;color:#888;margin-bottom:14px;line-height:1.5;">Los valores son de referencia y se confirmarán al abrir las inscripciones. El curso se dictará cuando contemos con suficientes participantes.</p>
-        <div class="formato-opciones">
-          <label class="formato-item" onclick="this.classList.toggle('seleccionado')">
-            <input type="radio" name="formato" value="introductorio" required>
-            <div class="formato-header">
-              <span class="formato-nombre">Curso introductorio</span>
-              <span class="formato-detalle">Fundamentos del oficio — para quienes parten desde cero o quieren ordenar lo aprendido de manera autodidacta. Aprox. 8 horas.</span>
-            </div>
-            <span class="formato-precio">~$50.000</span>
-          </label>
-          <label class="formato-item" onclick="this.classList.toggle('seleccionado')">
-            <input type="radio" name="formato" value="intermedio">
-            <div class="formato-header">
-              <span class="formato-nombre">Curso nivel intermedio</span>
-              <span class="formato-detalle">Para quienes ya trabajan en el rubro y buscan profundizar técnica y formalizar su conocimiento. Aprox. 20 horas.</span>
-            </div>
-            <span class="formato-precio">~$180.000</span>
-          </label>
-          <label class="formato-item" onclick="this.classList.toggle('seleccionado')">
-            <input type="radio" name="formato" value="completo">
-            <div class="formato-header">
-              <span class="formato-nombre">Curso completo</span>
-              <span class="formato-detalle">Formación integral desde los fundamentos hasta dominio técnico avanzado, con práctica en sala. Aprox. 40 horas.</span>
-            </div>
-            <span class="formato-precio">~$360.000</span>
-          </label>
-        </div>
-      </div>
-
-      <!-- P5 Días -->
-      <div class="form-group form-full">
-        <label class="field-label">¿Qué días puedes asistir? (puedes marcar más de uno)</label>
-        <div class="check-grid cols-3">
-          <label class="check-item"><input type="checkbox" name="dias" value="Lunes"> Lunes</label>
-          <label class="check-item"><input type="checkbox" name="dias" value="Martes"> Martes</label>
-          <label class="check-item"><input type="checkbox" name="dias" value="Miércoles"> Miércoles</label>
-          <label class="check-item"><input type="checkbox" name="dias" value="Jueves"> Jueves</label>
-          <label class="check-item"><input type="checkbox" name="dias" value="Viernes"> Viernes</label>
-          <label class="check-item"><input type="checkbox" name="dias" value="Sábado (mañana)"> Sábado (mañana)</label>
-        </div>
-      </div>
-
-      <!-- P6 Franja horaria -->
-      <div class="form-group form-full">
-        <label class="field-label">¿Qué franja horaria te acomoda? (puedes marcar más de una)</label>
-        <div class="check-grid">
-          <label class="check-item"><input type="checkbox" name="horario" value="Tardes (18:30 en adelante)"> Tardes (18:30 en adelante)</label>
-          <label class="check-item"><input type="checkbox" name="horario" value="Durante el día"> Durante el día (hasta las 17:00)</label>
-        </div>
-      </div>
-
-      <!-- P9 Experiencia -->
-      <div class="form-group form-full">
-        <label class="field-label">¿Cuál es tu experiencia previa en el área?</label>
-        <div class="escala-opciones">
-          <label class="escala-item"><input type="radio" name="experiencia" value="Parto desde cero" required> Parto desde cero, sin experiencia en el rubro</label>
-          <label class="escala-item"><input type="radio" name="experiencia" value="Bases autodidactas"> Tengo bases autodidactas, trabajo en el rubro pero sin formación formal</label>
-          <label class="escala-item"><input type="radio" name="experiencia" value="Experiencia, quiero formalizar"> Tengo experiencia, busco formalizar y certificar lo que ya sé</label>
-          <label class="escala-item"><input type="radio" name="experiencia" value="Experiencia avanzada"> Experiencia avanzada, busco profundizar y especializarme</label>
-        </div>
-      </div>
-
-      <!-- P11 Certeza de inscripción -->
-      <div class="form-group form-full">
-        <label class="field-label">Si el curso comienza en las próximas semanas, ¿qué tan probable es que te inscribas?</label>
-        <div class="escala-opciones">
-          <label class="escala-item"><input type="radio" name="certeza" value="Me inscribo seguro/a" required> Me inscribo seguro/a — solo necesito la fecha y el valor definitivo</label>
-          <label class="escala-item"><input type="radio" name="certeza" value="Muy probable"> Muy probable — tengo el interés y los medios</label>
-          <label class="escala-item"><input type="radio" name="certeza" value="Probable, depende de detalles"> Probable — depende de los detalles finales (horario, valor exacto)</label>
-          <label class="escala-item"><input type="radio" name="certeza" value="Todavía no estoy seguro/a"> Todavía no estoy seguro/a, pero quiero mantenerme informado/a</label>
-        </div>
-      </div>
-
-      <!-- P12 Campo abierto -->
-      <div class="form-group form-full">
-        <label class="field-label">¿Algo que quieras agregar? (opcional)</label>
-        <textarea id="comentarios" name="comentarios" placeholder="Cuéntanos tu contexto, qué quieres lograr con el curso, o cualquier pregunta que tengas."></textarea>
-      </div>
-
-    </div>
-
-    <p style="font-size:13px;color:#888;margin:24px auto 0;max-width:500px;line-height:1.6;">Si representas a un teatro u organización y te interesa que el curso se realice en tus instalaciones, escríbenos directamente a <strong style="color:#aaa;">otec@espaciochecoeslovaquia.cl</strong></p>
-
-    <button type="submit" class="btn-enviar">Registrarme</button>
-    <p class="form-nota">Tus datos se usan exclusivamente para avisarte sobre los cursos. No los compartimos con terceros.</p>
-  </form>
-
-  <div class="gracias-box" id="gracias">
-    <h3>Registro recibido.</h3>
-    <p>Te contactaremos por correo y WhatsApp cuando abramos las inscripciones formales. Guarda el número <strong>+56 9 3902 0479</strong> como CHECOTEC para que te llegue el aviso.</p>
+  <p class="form-aviso">Los cursos se dictarán una vez que contemos con un número suficiente de participantes inscritos. Tu registro nos ayuda a confirmar la demanda y definir las fechas.</p>
+  <div style="max-width:700px; margin-top:0;">
+    <iframe 
+      src="https://docs.google.com/forms/d/e/1FAIpQLScB6yefWc-peBPMZiT50GY6T4pQacbDG94HYsVr6ozpYPEZUQ/viewform?embedded=true"
+      width="100%" 
+      height="1400" 
+      frameborder="0" 
+      marginheight="0" 
+      marginwidth="0"
+      style="border:none;">
+      Cargando formulario…
+    </iframe>
   </div>
- </div>
 </section>
 
 <!-- FOOTER -->
