@@ -36,11 +36,11 @@ h3{font-size:1.6rem;line-height:1.1}
 p{margin:0 0 1rem;max-width:64ch}
 
 /* barra superior */
-.top{background:var(--hero-bg);color:var(--hero-fg)}
-.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-block:14px;flex-wrap:wrap}
-.brand{font:700 1.35rem/1 var(--display);letter-spacing:.14em;text-transform:uppercase}
-.brand b{color:var(--accent)}
-.top .label{color:var(--hero-muted)}
+.top{background:var(--hero-bg);color:var(--hero-fg);border-bottom:1px solid #2a2a2a}
+.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-block:20px;flex-wrap:wrap}
+.logo-img{height:150px;width:auto;display:block}
+.badge-otec{font-size:11px;font-weight:500;color:var(--hero-muted);border:1px solid #2a2a2a;padding:5px 12px;letter-spacing:.04em;white-space:nowrap}
+@media (max-width:640px){.logo-img{height:36px}}
 
 /* hero */
 .hero{background:var(--hero-bg);color:var(--hero-fg);padding-block:clamp(40px,8vw,88px) 0;border-top:1px solid #2a2a2a}
@@ -153,8 +153,8 @@ button.cta[disabled]{opacity:.6;cursor:wait}
 
 <header class="top">
   <div class="wrap">
-    <div class="brand">CHECO<b>TEC</b></div>
-    <div class="label">OTEC certificada NCh 2728:2015</div>
+    <img src="../img/logo-checotec-footer.png" alt="CHECOTEC" class="logo-img">
+    <div class="badge-otec">OTEC · NCh2728:2015</div>
   </div>
 </header>
 
