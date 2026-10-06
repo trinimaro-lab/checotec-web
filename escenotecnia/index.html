@@ -414,9 +414,12 @@ button.cta[disabled]{opacity:.6;cursor:wait}
 /* URL del webhook del Escenario A en Make. */
 var ENDPOINT = "https://hook.us2.make.com/v6kuvhvajipbxgndcwq7nutom0cvm8f7";
 var COURSE = "escenotecnia-40h";
+/* Interruptor de cupos: poner true cuando se llene la cohorte (se oculta el formulario). */
+var CUPOS_CERRADOS = false;
 (function(){
   var f=document.getElementById('inscForm'), box=document.getElementById('companyBox'), res=document.getElementById('result'), btn=document.getElementById('sendBtn');
   if(ENDPOINT){document.getElementById('previewNote').hidden=true;}
+  if(CUPOS_CERRADOS){f.style.display='none';res.innerHTML='<div class="msg bad">Cupos agotados para esta cohorte. Escríbenos a otec@espaciochecoeslovaquia.cl y te avisamos de la próxima.</div>';return;}
   function tipo(){return f.querySelector('input[name=tipo]:checked').value;}
   f.addEventListener('change',function(){box.hidden=(tipo()!=='empresa');});
   function setErr(n,m){var e=f.querySelector('.err[data-for='+n+']'); if(e) e.textContent=m||'';}
