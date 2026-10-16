@@ -147,8 +147,6 @@ footer strong{color:var(--hero-fg)}
 </head>
 <body>
 
-<div class="draft">BORRADOR · página sin enlazar ni indexada · pendiente: fecha límite del precio de lanzamiento, plazo de acceso, política de devolución y conexión de pago.</div>
-
 <header class="top">
   <div class="wrap">
     <a href="https://checotec.cl/" aria-label="CHECOTEC — inicio"><img src="../img/logo-checotec-footer.png" alt="CHECOTEC" class="logo-img"></a>
@@ -164,7 +162,7 @@ footer strong{color:var(--hero-fg)}
       <h1>Diseña tu <em>página web</em> de 0 a 100. Con IA, sin programar.</h1>
       <p class="sub">Paso a paso y desde cero: terminas con una página real, publicada en internet con tu propio dominio. No necesitas experiencia previa.</p>
       <a class="cta" href="#inscripcion">Quiero mi lugar</a><button class="cta ghost" type="button" data-open-modulo0>▶ Ver el Módulo 0 gratis</button>
-      <span class="cta-note">Precio de lanzamiento $49.900 · Pago con Mercado Pago · Boleta o factura</span>
+      <span class="cta-note">Precio de lanzamiento $49.900 · Pago con Mercado Pago</span>
     </div>
     <figure class="hero-shot"><img data-img="Crea tu web con IA_ paso a paso.png" alt="Portada del curso: crea tu web con IA, paso a paso" width="1280" height="720"></figure>
   </div>
@@ -296,18 +294,15 @@ footer strong{color:var(--hero-fg)}
     <div>
       <p class="label" style="color:var(--hero-muted)">Inscripción</p>
       <h2>Empieza hoy con el precio de lanzamiento</h2>
-      <p>Pagas con Mercado Pago, con tarjeta o en cuotas. Al confirmarse el pago recibes tu acceso al campus por correo. Si compra tu empresa, le emitimos factura a su nombre; si compras tú, recibes boleta.</p>
-      <p>Este curso <strong>no se imputa a franquicia tributaria SENCE</strong>.</p>
+      <p>Pagas con Mercado Pago. Al confirmarse el pago quedas inscrito automáticamente y te escribimos al correo que indiques.</p>
       <a class="cta" href="#formulario">Inscribirme</a>
     </div>
     <div class="price">
       <div class="big"><s>$70.000</s>$49.900</div>
-      <p class="label" style="margin-top:8px;color:var(--hero-muted)">Precio de lanzamiento <span class="pend">Hasta: por definir</span></p>
+      <p class="label" style="margin-top:8px;color:var(--hero-muted)">Precio de lanzamiento</p>
       <div class="row"><span>Modalidad</span><span>Online · a tu ritmo</span></div>
       <div class="row"><span>Contenido</span><span>10 módulos</span></div>
-      <div class="row"><span>Acceso</span><span class="pend">Plazo por definir</span></div>
-      <div class="row"><span>Medios de pago</span><span>Mercado Pago · cuotas con tarjeta</span></div>
-      <div class="row"><span>Documento</span><span>Boleta o factura</span></div>
+      <div class="row"><span>Medios de pago</span><span>Mercado Pago</span></div>
       <div class="row"><span>Costos extra</span><span><a href="#costos">Ver detalle</a></span></div>
     </div>
   </div>
@@ -317,8 +312,7 @@ footer strong{color:var(--hero-fg)}
   <div class="wrap">
     <p class="label" style="color:var(--hero-muted)">Formulario de inscripción</p>
     <h2>Inscríbete al curso</h2>
-    <p>Valor: $49.900 (precio de lanzamiento). Al enviar te llevamos a Mercado Pago. Las cuotas y su interés los define Mercado Pago según tu tarjeta, y el interés lo asumes tú. Tu acceso llega al correo que indiques.</p>
-    <div class="preview" id="previewNote">VISTA PREVIA: el envío real se activa cuando el pago esté conectado.</div>
+    <p>Valor: $49.900 (precio de lanzamiento). Al enviar te llevamos a Mercado Pago para pagar.</p>
     <form id="inscForm" novalidate>
       <div class="hp" aria-hidden="true"><label for="web">No completar</label><input type="text" id="web" name="web" tabindex="-1" autocomplete="off"></div>
       <div class="grid2">
@@ -329,24 +323,21 @@ footer strong{color:var(--hero-fg)}
         <div class="field"><label for="email">Correo</label><input type="email" id="email" name="email" autocomplete="email" required><span class="err" data-for="email"></span></div>
         <div class="field"><label for="tel">Teléfono (opcional)</label><input type="tel" id="tel" name="tel" autocomplete="tel"></div>
       </div>
-      <fieldset>
-        <legend class="legend2">¿Quién compra el curso?</legend>
-        <label class="choice"><input type="radio" name="tipo" value="particular" checked><span>Compro yo<small>Pagas con Mercado Pago y recibes tu boleta por correo.</small></span></label>
-        <label class="choice"><input type="radio" name="tipo" value="empresa"><span>Compra mi empresa<small>Emitimos factura a nombre de la empresa. Tu acceso se activa cuando se confirma el pago.</small></span></label>
-      </fieldset>
-      <div class="company" id="companyBox" hidden>
-        <div class="grid2">
-          <div class="field"><label for="rut_empresa">RUT de la empresa</label><input type="text" id="rut_empresa" name="rut_empresa" placeholder="12.345.678-9"><span class="err" data-for="rut_empresa"></span></div>
-          <div class="field"><label for="razon_social">Razón social</label><input type="text" id="razon_social" name="razon_social"><span class="err" data-for="razon_social"></span></div>
-        </div>
-        <div class="field"><label for="email_facturacion">Correo para facturación</label><input type="email" id="email_facturacion" name="email_facturacion"><span class="err" data-for="email_facturacion"></span></div>
+      <p class="legend2" style="margin-top:18px">Datos para tu factura</p>
+      <div class="grid2">
+        <div class="field"><label for="rut_empresa">RUT</label><input type="text" id="rut_empresa" name="rut_empresa" placeholder="12.345.678-9" autocomplete="off" required><span class="err" data-for="rut_empresa"></span></div>
+        <div class="field"><label for="razon_social">Razón social o nombre</label><input type="text" id="razon_social" name="razon_social" autocomplete="organization" required><span class="err" data-for="razon_social"></span></div>
       </div>
-      <label class="consent"><input type="checkbox" id="consent" name="consent" required><span>Acepto que CHECOTEC SpA use estos datos para gestionar mi inscripción y emitir los documentos tributarios.</span></label>
+      <div class="grid2">
+        <div class="field"><label for="giro">Giro</label><input type="text" id="giro" name="giro" autocomplete="off" required><span class="err" data-for="giro"></span></div>
+        <div class="field"><label for="direccion">Dirección (calle, número y comuna)</label><input type="text" id="direccion" name="direccion" autocomplete="street-address" required><span class="err" data-for="direccion"></span></div>
+      </div>
+      <div class="field"><label for="email_facturacion">Correo para enviar la factura</label><input type="email" id="email_facturacion" name="email_facturacion" autocomplete="email" required><span class="err" data-for="email_facturacion"></span></div>
+      <label class="consent"><input type="checkbox" id="consent" name="consent" required><span>Acepto que CHECOTEC SpA use estos datos para gestionar mi inscripción y emitir la factura.</span></label>
       <span class="err" data-for="consent" style="color:#ff8a8a;font-size:13px"></span>
       <button type="submit" class="cta" id="sendBtn">Inscribirme</button>
       <div id="result" role="status" aria-live="polite"></div>
     </form>
-    <p style="margin-top:24px"><span class="pend">Pendiente: política de devolución y términos de la compra</span></p>
   </div>
 </section>
 </main>
@@ -373,8 +364,8 @@ footer strong{color:var(--hero-fg)}
 </div>
 
 <script>
-/* Webhook del Escenario A en Make: VACÍO hasta generalizar A/B (el de Escenotecnia cobra $362.954). */
-var ENDPOINT = "";
+/* Webhook del Escenario A en Make (inscripción del curso Diseño web, $49.900). */
+var ENDPOINT = "https://hook.us2.make.com/v6kuvhvajipbxgndcwq7nutom0cvm8f7";
 var COURSE = "paginaia-web-ia";
 /* Módulo 0 (gratis) y sus imágenes se sirven desde su sitio publicado */
 var M0BASE = "https://delacuestamarin-max.github.io/curso-web-ia-modulo0/";
@@ -393,10 +384,7 @@ var M0BASE = "https://delacuestamarin-max.github.io/curso-web-ia-modulo0/";
   document.addEventListener('keydown', function(e){ if(e.key==='Escape' && modal.classList.contains('open')) closeM(); });
 
   /* formulario */
-  var f=document.getElementById('inscForm'), box=document.getElementById('companyBox'), res=document.getElementById('result'), btn=document.getElementById('sendBtn');
-  if(ENDPOINT){document.getElementById('previewNote').hidden=true;}
-  function tipo(){return f.querySelector('input[name=tipo]:checked').value;}
-  f.addEventListener('change',function(){box.hidden=(tipo()!=='empresa');});
+  var f=document.getElementById('inscForm'), res=document.getElementById('result'), btn=document.getElementById('sendBtn');
   function setErr(n,m){var e=f.querySelector('.err[data-for='+n+']'); if(e) e.textContent=m||'';}
   function rutOk(r){r=(r||'').replace(/[.\s]/g,'').toUpperCase(); var m=/^(\d{7,8})-([\dK])$/.exec(r); if(!m) return false;
     var sum=0,mul=2,d=m[1]; for(var i=d.length-1;i>=0;i--){sum+=parseInt(d[i],10)*mul; mul=mul===7?2:mul+1;}
@@ -406,29 +394,27 @@ var M0BASE = "https://delacuestamarin-max.github.io/curso-web-ia-modulo0/";
     ev.preventDefault(); res.innerHTML='';
     var d={}; new FormData(f).forEach(function(v,k){d[k]=typeof v==='string'?v.trim():v;});
     var bad=false;
-    ['nombre','apellido','email','rut_empresa','razon_social','email_facturacion','consent'].forEach(function(n){setErr(n,'');});
+    ['nombre','apellido','email','rut_empresa','razon_social','giro','direccion','email_facturacion','consent'].forEach(function(n){setErr(n,'');});
     if(!d.nombre){setErr('nombre','Escribe tu nombre.');bad=true;}
     if(!d.apellido){setErr('apellido','Escribe tu apellido.');bad=true;}
     if(!emailOk(d.email)){setErr('email','Revisa tu correo.');bad=true;}
-    if(tipo()==='empresa'){
-      if(!rutOk(d.rut_empresa)){setErr('rut_empresa','RUT no válido.');bad=true;}
-      if(!d.razon_social){setErr('razon_social','Escribe la razón social.');bad=true;}
-      if(!emailOk(d.email_facturacion)){setErr('email_facturacion','Revisa el correo de facturación.');bad=true;}
-    }
+    if(!rutOk(d.rut_empresa)){setErr('rut_empresa','RUT no válido.');bad=true;}
+    if(!d.razon_social){setErr('razon_social','Escribe la razón social o tu nombre.');bad=true;}
+    if(!d.giro){setErr('giro','Escribe el giro.');bad=true;}
+    if(!d.direccion){setErr('direccion','Escribe la dirección.');bad=true;}
+    if(!emailOk(d.email_facturacion)){setErr('email_facturacion','Revisa el correo de facturación.');bad=true;}
     if(!f.consent.checked){setErr('consent','Debes aceptar para continuar.');bad=true;}
     if(bad) return;
     if(d.web) return;
     var fid=(window.crypto&&crypto.randomUUID)?crypto.randomUUID().replace(/-/g,'').slice(0,20):String(Date.now())+Math.random().toString(36).slice(2,8);
-    var payload={ficha_id:'f'+fid,curso:COURSE,nombre:d.nombre,apellido:d.apellido,email:d.email.toLowerCase(),tel:d.tel||'',tipo:tipo()};
-    if(tipo()==='empresa'){payload.rut_empresa=d.rut_empresa;payload.razon_social=d.razon_social;payload.email_facturacion=d.email_facturacion.toLowerCase();}
-    if(!ENDPOINT){res.innerHTML='<div class="msg ok">Vista previa: el formulario es válido. Todavía no se envía nada.</div>';return;}
+    var payload={ficha_id:'f'+fid,curso:COURSE,nombre:d.nombre,apellido:d.apellido,email:d.email.toLowerCase(),tel:d.tel||'',tipo:'particular',rut_empresa:d.rut_empresa,razon_social:d.razon_social,giro:d.giro,direccion:d.direccion,email_facturacion:d.email_facturacion.toLowerCase()};
     btn.disabled=true; btn.textContent='Enviando…';
     fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(payload).toString()})
       .then(function(r){return r.json();})
       .then(function(j){
         if(j.pago_url){window.location.href=j.pago_url;return;}
         res.innerHTML='<div class="msg ok">'+(j.mensaje||'Recibimos tu inscripción. Te escribiremos al correo indicado.')+'</div>';
-        f.reset(); box.hidden=true; btn.disabled=false; btn.textContent='Inscribirme';
+        f.reset(); btn.disabled=false; btn.textContent='Inscribirme';
       })
       .catch(function(){res.innerHTML='<div class="msg bad">No pudimos enviar tu inscripción. Inténtalo de nuevo o escríbenos a otec@espaciochecoeslovaquia.cl.</div>';btn.disabled=false;btn.textContent='Inscribirme';});
   });
